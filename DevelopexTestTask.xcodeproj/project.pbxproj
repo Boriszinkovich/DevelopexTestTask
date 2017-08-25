@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		927716DB6C6E15790421D460 /* libPods-DevelopexTestTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */; };
+		CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1053961F4F0DC5007000ED /* UrlSearchTask.m */; };
+		CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539C1F506B24007000ED /* AsynchronousOperation.m */; };
+		CE1053A01F506B90007000ED /* DataTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539F1F506B90007000ED /* DataTaskOperation.m */; };
 		CEAF7F231F4F0D48004E2B3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F221F4F0D48004E2B3C /* main.m */; };
 		CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F251F4F0D48004E2B3C /* AppDelegate.m */; };
 		CEAF7F291F4F0D48004E2B3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F281F4F0D48004E2B3C /* ViewController.m */; };
@@ -17,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DevelopexTestTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1053951F4F0DC5007000ED /* UrlSearchTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlSearchTask.h; sourceTree = "<group>"; };
+		CE1053961F4F0DC5007000ED /* UrlSearchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlSearchTask.m; sourceTree = "<group>"; };
+		CE10539B1F506B24007000ED /* AsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousOperation.h; sourceTree = "<group>"; };
+		CE10539C1F506B24007000ED /* AsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousOperation.m; sourceTree = "<group>"; };
+		CE10539E1F506B90007000ED /* DataTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTaskOperation.h; sourceTree = "<group>"; };
+		CE10539F1F506B90007000ED /* DataTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTaskOperation.m; sourceTree = "<group>"; };
 		CEAF7F1E1F4F0D48004E2B3C /* DevelopexTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevelopexTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAF7F221F4F0D48004E2B3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEAF7F241F4F0D48004E2B3C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +39,8 @@
 		CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAF7F331F4F0D48004E2B3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAF7F351F4F0D48004E2B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D991FE7C26CF0059350C439F /* Pods-DevelopexTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevelopexTestTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-DevelopexTestTask/Pods-DevelopexTestTask.release.xcconfig"; sourceTree = "<group>"; };
+		E6752BFCC271EE14C67BB3DA /* Pods-DevelopexTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevelopexTestTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DevelopexTestTask/Pods-DevelopexTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +48,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927716DB6C6E15790421D460 /* libPods-DevelopexTestTask.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AF22B4076D2707FB97E53D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E6752BFCC271EE14C67BB3DA /* Pods-DevelopexTestTask.debug.xcconfig */,
+				D991FE7C26CF0059350C439F /* Pods-DevelopexTestTask.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C7A7B0B768836774DA9A59B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEAF7F151F4F0D48004E2B3C = {
 			isa = PBXGroup;
 			children = (
 				CEAF7F201F4F0D48004E2B3C /* DevelopexTestTask */,
 				CEAF7F1F1F4F0D48004E2B3C /* Products */,
+				2AF22B4076D2707FB97E53D2 /* Pods */,
+				C7A7B0B768836774DA9A59B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +103,12 @@
 				CEAF7F351F4F0D48004E2B3C /* Info.plist */,
 				CEAF7F2D1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld */,
 				CEAF7F211F4F0D48004E2B3C /* Supporting Files */,
+				CE1053951F4F0DC5007000ED /* UrlSearchTask.h */,
+				CE1053961F4F0DC5007000ED /* UrlSearchTask.m */,
+				CE10539B1F506B24007000ED /* AsynchronousOperation.h */,
+				CE10539C1F506B24007000ED /* AsynchronousOperation.m */,
+				CE10539E1F506B90007000ED /* DataTaskOperation.h */,
+				CE10539F1F506B90007000ED /* DataTaskOperation.m */,
 			);
 			path = DevelopexTestTask;
 			sourceTree = "<group>";
@@ -89,9 +128,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEAF7F381F4F0D48004E2B3C /* Build configuration list for PBXNativeTarget "DevelopexTestTask" */;
 			buildPhases = (
+				F240F995055D22C5D37443EC /* [CP] Check Pods Manifest.lock */,
 				CEAF7F1A1F4F0D48004E2B3C /* Sources */,
 				CEAF7F1B1F4F0D48004E2B3C /* Frameworks */,
 				CEAF7F1C1F4F0D48004E2B3C /* Resources */,
+				1BA64BF109759CAB6CD20C69 /* [CP] Embed Pods Frameworks */,
+				2C2C426700873E84A12E18BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,15 +191,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BA64BF109759CAB6CD20C69 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DevelopexTestTask/Pods-DevelopexTestTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C2C426700873E84A12E18BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DevelopexTestTask/Pods-DevelopexTestTask-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F240F995055D22C5D37443EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DevelopexTestTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CEAF7F1A1F4F0D48004E2B3C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */,
+				CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */,
 				CEAF7F291F4F0D48004E2B3C /* ViewController.m in Sources */,
 				CEAF7F2F1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld in Sources */,
 				CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */,
 				CEAF7F231F4F0D48004E2B3C /* main.m in Sources */,
+				CE1053A01F506B90007000ED /* DataTaskOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,10 +373,12 @@
 		};
 		CEAF7F391F4F0D48004E2B3C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6752BFCC271EE14C67BB3DA /* Pods-DevelopexTestTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LXU9U5V765;
 				INFOPLIST_FILE = DevelopexTestTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zby.DevelopexTestTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -289,10 +387,12 @@
 		};
 		CEAF7F3A1F4F0D48004E2B3C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D991FE7C26CF0059350C439F /* Pods-DevelopexTestTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LXU9U5V765;
 				INFOPLIST_FILE = DevelopexTestTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zby.DevelopexTestTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -318,6 +418,7 @@
 				CEAF7F3A1F4F0D48004E2B3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
