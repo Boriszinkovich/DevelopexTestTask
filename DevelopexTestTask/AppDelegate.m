@@ -8,11 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "UrlSearchTask.h"
-
 @interface AppDelegate ()
-
-@property (nonatomic, strong) UrlSearchTask *theSearchTask;
 
 @end
 
@@ -21,11 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    self.theSearchTask = [[UrlSearchTask alloc] initWithStartUrl:[NSURL URLWithString: @"http://www.sanmarinocard.sm"] maxThreadsCount:4 searchString:@"you" maxUrlCount:80];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-    {
-        [self.theSearchTask methodCancel];
-    });
+
     return YES;
 }
 

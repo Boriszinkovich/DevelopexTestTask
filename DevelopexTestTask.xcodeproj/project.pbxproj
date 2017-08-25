@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		927716DB6C6E15790421D460 /* libPods-DevelopexTestTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */; };
+		CE0556B61F508ABA008C675F /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556B51F508ABA008C675F /* MainVC.m */; };
+		CE0556BC1F509D7D008C675F /* UIImage+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */; };
+		CE0556BF1F50C6D2008C675F /* UIView+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */; };
 		CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1053961F4F0DC5007000ED /* UrlSearchTask.m */; };
 		CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539C1F506B24007000ED /* AsynchronousOperation.m */; };
-		CE1053A01F506B90007000ED /* DataTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539F1F506B90007000ED /* DataTaskOperation.m */; };
+		CE1053A01F506B90007000ED /* SearchTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539F1F506B90007000ED /* SearchTaskOperation.m */; };
 		CEAF7F231F4F0D48004E2B3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F221F4F0D48004E2B3C /* main.m */; };
 		CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F251F4F0D48004E2B3C /* AppDelegate.m */; };
-		CEAF7F291F4F0D48004E2B3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F281F4F0D48004E2B3C /* ViewController.m */; };
 		CEAF7F2C1F4F0D48004E2B3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAF7F2A1F4F0D48004E2B3C /* Main.storyboard */; };
 		CEAF7F2F1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F2D1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld */; };
 		CEAF7F311F4F0D48004E2B3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */; };
@@ -22,18 +24,22 @@
 
 /* Begin PBXFileReference section */
 		0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DevelopexTestTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE0556B41F508ABA008C675F /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
+		CE0556B51F508ABA008C675F /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
+		CE0556BA1F509D7D008C675F /* UIImage+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BZExtensions.h"; sourceTree = "<group>"; };
+		CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BZExtensions.m"; sourceTree = "<group>"; };
+		CE0556BD1F50C6D2008C675F /* UIView+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BZExtensions.h"; sourceTree = "<group>"; };
+		CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BZExtensions.m"; sourceTree = "<group>"; };
 		CE1053951F4F0DC5007000ED /* UrlSearchTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlSearchTask.h; sourceTree = "<group>"; };
 		CE1053961F4F0DC5007000ED /* UrlSearchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlSearchTask.m; sourceTree = "<group>"; };
 		CE10539B1F506B24007000ED /* AsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousOperation.h; sourceTree = "<group>"; };
 		CE10539C1F506B24007000ED /* AsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousOperation.m; sourceTree = "<group>"; };
-		CE10539E1F506B90007000ED /* DataTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTaskOperation.h; sourceTree = "<group>"; };
-		CE10539F1F506B90007000ED /* DataTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTaskOperation.m; sourceTree = "<group>"; };
+		CE10539E1F506B90007000ED /* SearchTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTaskOperation.h; sourceTree = "<group>"; };
+		CE10539F1F506B90007000ED /* SearchTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTaskOperation.m; sourceTree = "<group>"; };
 		CEAF7F1E1F4F0D48004E2B3C /* DevelopexTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevelopexTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAF7F221F4F0D48004E2B3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEAF7F241F4F0D48004E2B3C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEAF7F251F4F0D48004E2B3C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CEAF7F271F4F0D48004E2B3C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CEAF7F281F4F0D48004E2B3C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CEAF7F2B1F4F0D48004E2B3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEAF7F2E1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevelopexTestTask.xcdatamodel; sourceTree = "<group>"; };
 		CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,20 +101,24 @@
 			children = (
 				CEAF7F241F4F0D48004E2B3C /* AppDelegate.h */,
 				CEAF7F251F4F0D48004E2B3C /* AppDelegate.m */,
-				CEAF7F271F4F0D48004E2B3C /* ViewController.h */,
-				CEAF7F281F4F0D48004E2B3C /* ViewController.m */,
 				CEAF7F2A1F4F0D48004E2B3C /* Main.storyboard */,
 				CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */,
 				CEAF7F321F4F0D48004E2B3C /* LaunchScreen.storyboard */,
 				CEAF7F351F4F0D48004E2B3C /* Info.plist */,
 				CEAF7F2D1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld */,
 				CEAF7F211F4F0D48004E2B3C /* Supporting Files */,
+				CE0556B41F508ABA008C675F /* MainVC.h */,
+				CE0556B51F508ABA008C675F /* MainVC.m */,
 				CE1053951F4F0DC5007000ED /* UrlSearchTask.h */,
 				CE1053961F4F0DC5007000ED /* UrlSearchTask.m */,
+				CE0556BA1F509D7D008C675F /* UIImage+BZExtensions.h */,
+				CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */,
 				CE10539B1F506B24007000ED /* AsynchronousOperation.h */,
 				CE10539C1F506B24007000ED /* AsynchronousOperation.m */,
-				CE10539E1F506B90007000ED /* DataTaskOperation.h */,
-				CE10539F1F506B90007000ED /* DataTaskOperation.m */,
+				CE10539E1F506B90007000ED /* SearchTaskOperation.h */,
+				CE10539F1F506B90007000ED /* SearchTaskOperation.m */,
+				CE0556BD1F50C6D2008C675F /* UIView+BZExtensions.h */,
+				CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */,
 			);
 			path = DevelopexTestTask;
 			sourceTree = "<group>";
@@ -247,13 +257,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0556BF1F50C6D2008C675F /* UIView+BZExtensions.m in Sources */,
 				CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */,
+				CE0556BC1F509D7D008C675F /* UIImage+BZExtensions.m in Sources */,
 				CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */,
-				CEAF7F291F4F0D48004E2B3C /* ViewController.m in Sources */,
+				CE0556B61F508ABA008C675F /* MainVC.m in Sources */,
 				CEAF7F2F1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld in Sources */,
 				CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */,
 				CEAF7F231F4F0D48004E2B3C /* main.m in Sources */,
-				CE1053A01F506B90007000ED /* DataTaskOperation.m in Sources */,
+				CE1053A01F506B90007000ED /* SearchTaskOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +390,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LXU9U5V765;
 				INFOPLIST_FILE = DevelopexTestTask/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zby.DevelopexTestTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,7 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LXU9U5V765;
 				INFOPLIST_FILE = DevelopexTestTask/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zby.DevelopexTestTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";

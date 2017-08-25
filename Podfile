@@ -6,4 +6,6 @@ target 'DevelopexTestTask' do
   # use_frameworks!
 
   # Pods for DevelopexTestTask
+  pod 'ActionSheetPicker-3.0', '~> 2.2.0'
+  
 end

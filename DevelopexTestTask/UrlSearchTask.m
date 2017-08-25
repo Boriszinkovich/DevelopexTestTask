@@ -8,6 +8,8 @@
 
 #import "UrlSearchTask.h"
 
+#import "SearchTaskOperation.h"
+
 @interface UrlSearchTask()
 
 @property (nonatomic, strong, nonnull) NSURL *startUrl;
@@ -15,9 +17,11 @@
 @property (nonatomic, strong, nonnull) NSString *searchString;
 @property (nonatomic, assign) NSUInteger urlCount;
 @property (nonatomic, strong, nonnull) NSOperationQueue *operationQueue;
+@property (nonatomic, strong) NSHashTable<SearchTaskOperation *> *runningOperationsTable;
 @property (nonatomic, strong) NSOperationQueue *mainTaskOperationQueue;
-//@property (nonatomic, strong) NSMutableArray<NSString *> *urlsQueue;
+@property (nonatomic, strong) NSMutableSet<NSURL *> *urlsSet;
 @property (nonatomic, assign) NSUInteger currentUrlCount;
+@property (nonatomic, assign) NSUInteger currentProcessedCount;
 
 @end
 
@@ -36,92 +40,128 @@
         _operationQueue.maxConcurrentOperationCount = threadsCount;
         _mainTaskOperationQueue = [NSOperationQueue new];
         _mainTaskOperationQueue.maxConcurrentOperationCount = 1;
-        [_operationQueue addOperationWithBlock:^
-        {
-            [self methodStartWithUrl:startUrl];
-        }];
+        [_mainTaskOperationQueue addOperationWithBlock:^
+         {
+             self.runningOperationsTable = [NSHashTable weakObjectsHashTable];
+             
+             self.urlsSet = [NSMutableSet new];
+             [self.urlsSet addObject:startUrl];
+             self.currentUrlCount = 1;
+             [self respondNewUrlsFound:[NSSet setWithObject:startUrl]];
+             [self startOperationWithUrl:startUrl];
+         }];
     }
     return self;
 }
 
-- (void)methodStartWithUrl:(NSURL * _Nonnull)theUrl
+- (void)startOperationWithUrl:(NSURL * _Nonnull)theUrl
 {
-    NSError *error = nil;
-    NSData *responseData = [NSData dataWithContentsOfURL:theUrl options:NSDataReadingUncached error:&error];
-    if (error)
-    {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    else
-    {
-        NSLog(@"Data has loaded successfully.");
-    }
-    NSString *result = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
-    NSLog(@"%@", result);
-    NSSet *theUrls = [self methodFindUrls:result];
-    __block NSUInteger searchCount = [self findSearchCount:_searchString withOriginString:result];
-    [_mainTaskOperationQueue addOperationWithBlock:^
-    {
-        [self methodHandleUrls:theUrls withSearchCount:searchCount withParentUrl:theUrl];
-    }];
+    SearchTaskOperation *taskOperation = [[SearchTaskOperation alloc] initWithURL:theUrl withSearchString:self.searchString dataTaskCompletionHandler:^(NSSet<NSURL *> * _Nonnull urlSet, NSUInteger searchCount, NSError * _Nullable error, NSURL * _Nonnull parentUrl)
+                                          {
+                                              [self.mainTaskOperationQueue addOperationWithBlock:^
+                                              {
+                                                  self.currentProcessedCount += 1;
+                                                  if (self.currentProcessedCount == self.urlCount)
+                                                  {
+                                                      [self respondTaskFinished];
+                                                  }
+                                                  if (error)
+                                                  {
+                                                      [self respondUrlFault:parentUrl error:error];
+                                                  }
+                                                  else
+                                                  {
+                                                      [self methodHandleUrls:urlSet withSearchCount:searchCount withParentUrl:parentUrl];
+                                                  }
+                                              }];
+                                          }];
+    [self.runningOperationsTable addObject:taskOperation];
+    [_operationQueue addOperation:taskOperation];
 }
-
 
 - (void)methodHandleUrls:(NSSet<NSURL *> * _Nonnull)setOfUrls withSearchCount:(NSUInteger)searchCount
             withParentUrl:(NSURL *)theParentUrl
 {
-    if (setOfUrls.count)
+    [self respondUrlFinishedProcessing:theParentUrl foundCount:searchCount];
+    if (self.currentUrlCount >= self.urlCount)
     {
-        for (NSURL *theUrl in setOfUrls)
+        return;
+    }
+    NSMutableSet *mutableSet = setOfUrls.mutableCopy;
+    [mutableSet minusSet:self.urlsSet];
+    if (mutableSet.count)
+    {
+        for (NSURL *theUrl in mutableSet)
         {
+            self.currentUrlCount++;
+            [self startOperationWithUrl:theUrl];
+            [self respondNewUrlsFound:[NSSet setWithObject:theUrl]];
+            [self.urlsSet addObject:theUrl];
             if (self.currentUrlCount >= self.urlCount)
             {
                 break;
             }
-            self.currentUrlCount++;
-            [self.operationQueue addOperationWithBlock:^
-            {
-                [self methodStartWithUrl:theUrl];
-            }];
         }
     }
 }
 
-- (NSUInteger)findSearchCount:(NSString * _Nonnull)theSearchString withOriginString:(NSString * _Nonnull)originString
+- (void)methodPause
 {
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:theSearchString options:NSRegularExpressionCaseInsensitive error:&error];
-    NSUInteger numberOfMatches = [regex numberOfMatchesInString:originString options:0 range:NSMakeRange(0, [originString length])];
-    return numberOfMatches;
-}
-
-- (NSSet<NSURL *> * _Nonnull)methodFindUrls:(NSString * _Nonnull)text
-{
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?" options:NSRegularExpressionCaseInsensitive error:&error];
-    
-    NSArray *arrayOfAllMatches = [regex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
-    
-    NSMutableSet *setOfURLs = [[NSMutableSet alloc] init];
-    
-    for (NSTextCheckingResult *match in arrayOfAllMatches)
+    for (SearchTaskOperation *operation in self.runningOperationsTable)
     {
-        NSString* substringForMatch = [text substringWithRange:match.range];
-        NSLog(@"Extracted URL: %@",substringForMatch);
-        NSURL *url = [NSURL URLWithString:substringForMatch];
-        if (url != nil)
-        {
-            [setOfURLs addObject:url];
-        }
-        
+        [operation pause];
     }
-    
-    return setOfURLs;
+}
+
+- (void)methodPlay
+{
+    for (SearchTaskOperation *operation in self.runningOperationsTable)
+    {
+        [operation resume];
+    }
 }
 
 - (void)methodCancel
 {
-    [self.operationQueue cancelAllOperations];
+    for (SearchTaskOperation *operation in self.runningOperationsTable)
+    {
+        [operation cancel];
+    }
+//    [self.operationQueue cancelAllOperations];
+}
+
+- (void)respondTaskFinished
+{
+    [NSOperationQueue.mainQueue addOperationWithBlock:^
+     {
+         [self.delegate urlSearchTaskHasFinished:self];
+     }];
+}
+
+- (void)respondNewUrlsFound:(NSSet<NSURL *> * _Nonnull)set
+{
+    [NSOperationQueue.mainQueue addOperationWithBlock:^
+    {
+        [self.delegate newUrlsFound:set];
+    }];
+}
+
+- (void)respondUrlFinishedProcessing:(NSURL * _Nonnull)url foundCount:(NSUInteger)foundCount
+{
+    double progress = ((double)self.currentProcessedCount) / self.urlCount;
+    [NSOperationQueue.mainQueue addOperationWithBlock:^
+     {
+         [self.delegate urlWasFinishedProcessing:url foundCount:foundCount newProgress:progress];
+     }];
+}
+
+- (void)respondUrlFault:(NSURL * _Nonnull)url error:(NSError * _Nonnull)error
+{
+    double progress = ((double)self.currentProcessedCount) / self.urlCount;
+    [NSOperationQueue.mainQueue addOperationWithBlock:^
+     {
+         [self.delegate urlProcessingFault:url error:error newProgress:progress];
+     }];
 }
 
 @end

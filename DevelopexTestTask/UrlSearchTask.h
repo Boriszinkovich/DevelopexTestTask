@@ -17,22 +17,27 @@ __strong typeof(var) var = AHKWeak_##var; \
 _Pragma("clang diagnostic pop")
 
 
-@class UrlSearchTask;
+@protocol UrlSearchTaskDelegate;
+
+@interface UrlSearchTask : NSObject
+
+@property (nonatomic, weak, nullable) id<UrlSearchTaskDelegate> delegate;
+- (instancetype _Nonnull)initWithStartUrl:(NSURL * _Nonnull)startUrl maxThreadsCount:(NSUInteger)threadsCount searchString:(NSString * _Nonnull)searchString maxUrlCount:(NSUInteger)urlCount;
+- (void)methodCancel;
+- (void)methodPause;
+- (void)methodPlay;
+
+@end
 
 @protocol UrlSearchTaskDelegate <NSObject>
 
 - (void)urlSearchTaskHasFinished:(UrlSearchTask * _Nonnull)searchTask;
+- (void)urlWasFinishedProcessing:(NSURL * _Nonnull)url foundCount:(NSUInteger)foundCount newProgress:(double)progress;
+- (void)urlProcessingFault:(NSURL * _Nonnull)url error:(NSError * _Nonnull)error newProgress:(double)progress;
+- (void)newUrlsFound:(NSSet<NSURL *> * _Nonnull)set;
 //- (void)urlSearchTask:(UrlSearchTask * _Nonnull)searchTask changed
 
 @end
-
-@interface UrlSearchTask : NSObject
-
-- (instancetype _Nonnull)initWithStartUrl:(NSURL * _Nonnull)startUrl maxThreadsCount:(NSUInteger)threadsCount searchString:(NSString * _Nonnull)searchString maxUrlCount:(NSUInteger)urlCount;
-- (void)methodCancel;
-
-@end
-
 
 
 
