@@ -38,11 +38,12 @@
 - (void)main
 {
     NSURLSession *session =  [NSURLSession sharedSession];
-    session.configuration.timeoutIntervalForRequest = 20;
+    session.configuration.timeoutIntervalForRequest = 15;
     NSURLSessionTask *task = [session dataTaskWithRequest:self.request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error)
         {
             self.dataTaskCompletionHandler(nil, 0, error, self.request.URL);
+            [self completeOperation];
         }
         else
         {

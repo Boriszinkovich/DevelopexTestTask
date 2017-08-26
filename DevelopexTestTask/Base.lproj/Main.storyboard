@@ -25,23 +25,39 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="7TN-jB-Efr">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9VC-qt-BTo">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbD-xo-sae">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2m1-j9-pqY">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search type : BFS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Mq-63-vAs">
+                                                            <rect key="frame" x="92" y="12.5" width="136" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="5Mq-63-vAs" firstAttribute="centerX" secondItem="2m1-j9-pqY" secondAttribute="centerX" id="In8-On-htn"/>
+                                                        <constraint firstItem="5Mq-63-vAs" firstAttribute="centerY" secondItem="2m1-j9-pqY" secondAttribute="centerY" id="L85-MJ-ajL"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbD-xo-sae">
+                                                    <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                                    <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start url" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EZ-vp-Fra">
-                                                            <rect key="frame" x="15" y="12" width="62" height="20.5"/>
+                                                            <rect key="frame" x="15" y="12.5" width="62" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PaZ-Xn-cW6">
-                                                            <rect key="frame" x="125" y="7" width="180" height="30.5"/>
+                                                            <rect key="frame" x="125" y="7.5" width="180" height="30.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="Un0-5U-5Nv"/>
                                                                 <constraint firstAttribute="width" constant="180" id="tmL-bO-ms5"/>
@@ -61,7 +77,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKO-J7-gIR">
-                                                    <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Threads count : 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHc-4j-Lh8">
                                                             <rect key="frame" x="93" y="12" width="134.5" height="20.5"/>
@@ -77,7 +93,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dn-cc-Aop">
-                                                    <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="132" width="320" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qS-rf-NMe">
                                                             <rect key="frame" x="15" y="12" width="87" height="20.5"/>
@@ -106,7 +122,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jK8-Bb-jDd">
-                                                    <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="176" width="320" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Url count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zks-bV-b78">
                                                             <rect key="frame" x="15" y="12" width="70.5" height="20.5"/>
@@ -148,7 +164,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3t5-PN-A4e">
-                                        <rect key="frame" x="0.0" y="204" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="248" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3t5-PN-A4e" id="EA6-vf-qwe">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -171,6 +187,8 @@
                         <outlet property="headerView" destination="7TN-jB-Efr" id="vZA-xb-adB"/>
                         <outlet property="mainTableView" destination="WfW-4x-35H" id="LEK-Qk-u0e"/>
                         <outlet property="searchTextField" destination="JY8-dk-ddT" id="Wq7-ba-MyL"/>
+                        <outlet property="searchTypeLabel" destination="5Mq-63-vAs" id="63o-Wd-kpR"/>
+                        <outlet property="searchTypeView" destination="2m1-j9-pqY" id="zCJ-na-T5S"/>
                         <outlet property="startUrlTextField" destination="PaZ-Xn-cW6" id="1RY-B2-z8v"/>
                         <outlet property="threadsLabel" destination="CHc-4j-Lh8" id="iyp-EF-G5y"/>
                         <outlet property="threadsView" destination="sKO-J7-gIR" id="0Vq-Ji-NvQ"/>

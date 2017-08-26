@@ -19,10 +19,17 @@ _Pragma("clang diagnostic pop")
 
 @protocol UrlSearchTaskDelegate;
 
+
+typedef enum : NSInteger
+{
+    UrlSearchTypeQuick = 1,
+    UrlSearchTypeBfs = 2
+} UrlSearchType;
+
 @interface UrlSearchTask : NSObject
 
 @property (nonatomic, weak, nullable) id<UrlSearchTaskDelegate> delegate;
-- (instancetype _Nonnull)initWithStartUrl:(NSURL * _Nonnull)startUrl maxThreadsCount:(NSUInteger)threadsCount searchString:(NSString * _Nonnull)searchString maxUrlCount:(NSUInteger)urlCount;
+- (instancetype _Nonnull)initWithStartUrl:(NSURL * _Nonnull)startUrl maxThreadsCount:(NSUInteger)threadsCount searchString:(NSString * _Nonnull)searchString maxUrlCount:(NSUInteger)urlCount searchType:(UrlSearchType)type;
 - (void)methodCancel;
 - (void)methodPause;
 - (void)methodPlay;

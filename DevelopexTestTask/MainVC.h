@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *threadsView;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *searchTypeView;
+@property (weak, nonatomic) IBOutlet UILabel *searchTypeLabel;
 
 @end

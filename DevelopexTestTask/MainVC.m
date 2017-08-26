@@ -11,6 +11,7 @@
 #import "ActionSheetPicker.h"
 #import "UrlSearchTask.h"
 #import "UIView+BZExtensions.h"
+#import "Reachability.h"
 
 typedef enum : NSInteger
 {
@@ -32,6 +33,8 @@ typedef enum : NSInteger
 @property (nonatomic, assign) double currentProgress;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) UILabel *progressLabel;
+@property (nonatomic, assign) UrlSearchType searchType;
+@property (nonatomic, strong) Reachability *internetReachability;
 
 @end
 
@@ -56,18 +59,18 @@ typedef enum : NSInteger
         return;
     }
     _currentProgress = currentProgress;
+    self.progressView.progress = _currentProgress;
+    self.progressLabel.text = [NSString stringWithFormat:@"%.1f%@", self.currentProgress * 100, @"%"];
     if (!currentProgress)
     {
-        [self.mainTableView reloadData];
         self.progressView.alpha = 0;
         self.progressLabel.alpha = 0;
+        [self.mainTableView reloadData];
     }
     else
     {
         self.progressView.alpha = 1;
         self.progressLabel.alpha = 1;
-        self.progressView.progress = _currentProgress;
-        self.progressLabel.text = [NSString stringWithFormat:@"%.1f%@", self.currentProgress * 100, @"%"];
     }
 }
 
@@ -87,13 +90,33 @@ typedef enum : NSInteger
     self.urlCountTextField.keyboardType = UIKeyboardTypeNumberPad;
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleThreadsViewWasTapped:)];
     [self.threadsView addGestureRecognizer:gesture];
+    UITapGestureRecognizer *searchTypeGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSearchTypeViewWasTapped:)];
+    [self.searchTypeView addGestureRecognizer:searchTypeGesture];
+
     self.threadsCount = 5;
     self.currentState = MainVCStateInitial;
+    self.searchType = UrlSearchTypeBfs;
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    weakify(self)
+    self.internetReachability.unreachableBlock = ^(Reachability *reachability)
+    {
+        strongify(self)
+        [NSOperationQueue.mainQueue addOperationWithBlock:^
+         {
+             if (self.currentState == MainVCStatePlaying)
+             {
+                 [self cancelScanning];
+                 [self showErrorAlert:@"No internet connection"];
+             }
+         }];
+    };
+    [self.internetReachability stopNotifier];
     self.urlsArray = [NSMutableArray new];
     self.recordsDictionary = [NSMutableDictionary new];
     
     [self adjustThreadsLabel];
     [self adjustBarToCurrentState];
+    [self adjustSearchTypeLabel];
     
     self.startUrlTextField.text = @"http://www.sanmarinocard.sm";
     self.urlCountTextField.text = @"100";
@@ -123,10 +146,10 @@ typedef enum : NSInteger
     UIBarButtonItem *theStopItem = [[UIBarButtonItem alloc] initWithCustomView:stopButton];
     self.stopItem = theStopItem;
     
-    UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [pauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     [pauseButton setShowsTouchWhenHighlighted:YES];
-    pauseButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    pauseButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [pauseButton addTarget:self action:@selector(actionPauseButtonPressed:)
           forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *pauseItem = [[UIBarButtonItem alloc] initWithCustomView:pauseButton];
@@ -137,6 +160,11 @@ typedef enum : NSInteger
 
 - (void)actionPlayButtonPressed:(UIButton *)button
 {
+    if (!self.internetReachability.isReachable)
+    {
+        [self showErrorAlert:@"No internet connection"];
+        return;
+    }
     if (self.currentState == MainVCStateInitial)
     {
         [self.urlCountTextField resignFirstResponder];
@@ -151,10 +179,11 @@ typedef enum : NSInteger
         {
             self.urlsArray = [NSMutableArray new];
             self.recordsDictionary = [NSMutableDictionary new];
+            self.currentProgress = 0;
             [self.mainTableView reloadData];
             self.currentState = MainVCStatePlaying;
             [self adjustBarToCurrentState];
-            self.theSearchTask = [[UrlSearchTask alloc] initWithStartUrl:[NSURL URLWithString: self.startUrlTextField.text] maxThreadsCount:self.threadsCount searchString:self.searchTextField.text maxUrlCount:[self.urlCountTextField.text integerValue]];
+            self.theSearchTask = [[UrlSearchTask alloc] initWithStartUrl:[NSURL URLWithString: self.startUrlTextField.text] maxThreadsCount:self.threadsCount searchString:self.searchTextField.text maxUrlCount:[self.urlCountTextField.text integerValue] searchType:self.searchType];
             self.theSearchTask.delegate = self;
         }
     }
@@ -168,13 +197,7 @@ typedef enum : NSInteger
 
 - (void)actionStopButtonPressed:(UIButton *)button
 {
-    [self.theSearchTask methodCancel];
-    self.currentProgress = 0;
-    self.currentState = MainVCStateInitial;
-    [self adjustBarToCurrentState];
-    self.urlsArray = [NSMutableArray new];
-    self.recordsDictionary = [NSMutableDictionary new];
-    [self.mainTableView reloadData];
+    [self cancelScanning];
 }
 
 - (void)actionPauseButtonPressed:(UIButton *)button
@@ -185,6 +208,14 @@ typedef enum : NSInteger
 }
 
 #pragma mark - Gestures
+
+- (void)handleSearchTypeViewWasTapped:(UITapGestureRecognizer *)gesture
+{
+    if (self.currentState == MainVCStateInitial)
+    {
+        [self showSearchTypePicker];
+    }
+}
 
 - (void)handleThreadsViewWasTapped:(UITapGestureRecognizer *)gesture
 {
@@ -221,12 +252,13 @@ typedef enum : NSInteger
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+    view.backgroundColor = [UIColor lightGrayColor];
     UIProgressView *progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, 120, 20)];
     self.progressView = progressView;
     [view addSubview:progressView];
     progressView.theWidth = 120;
     progressView.theHeight = 30;
-    progressView.theCenterX = (progressView.superview.theWidth - 10) / 2;
+    progressView.theCenterX = (progressView.superview.theWidth - 30) / 2;
     progressView.theCenterY = progressView.superview.theHeight / 2;
     progressView.progress = self.currentProgress;
     
@@ -323,6 +355,17 @@ typedef enum : NSInteger
 
 #pragma mark - Methods (Private)
 
+- (void)cancelScanning
+{
+    [self.theSearchTask methodCancel];
+    self.currentProgress = 0;
+    self.currentState = MainVCStateInitial;
+    [self adjustBarToCurrentState];
+    self.urlsArray = [NSMutableArray new];
+    self.recordsDictionary = [NSMutableDictionary new];
+    [self.mainTableView reloadData];
+}
+
 - (NSString * _Nullable)validateFields
 {
     NSString *urlRegEx =
@@ -341,6 +384,23 @@ typedef enum : NSInteger
         return @"Need specify url count";
     }
     return nil;
+}
+
+- (void)showSearchTypePicker
+{
+    NSArray<NSString *> *typesArray = [NSArray arrayWithObjects:@"BFS", @"Speed Search", nil];
+    int initial = self.searchType == UrlSearchTypeBfs ? 0 : 1;
+    [ActionSheetStringPicker showPickerWithTitle:@"Threads number"
+                                            rows:typesArray
+                                initialSelection:initial
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue)
+     {
+         self.searchType = selectedIndex == 0 ? UrlSearchTypeBfs : UrlSearchTypeQuick;
+         [self adjustSearchTypeLabel];
+     }
+                                     cancelBlock:^(ActionSheetStringPicker *picker)
+     {
+     }origin:self.view];
 }
 
 - (void)showThreadsPicker
@@ -388,6 +448,11 @@ typedef enum : NSInteger
 - (void)adjustThreadsLabel
 {
     self.threadsLabel.text = [NSString stringWithFormat:@"Threads count:%zd", self.threadsCount];
+}
+
+- (void)adjustSearchTypeLabel
+{
+    self.searchTypeLabel.text = [NSString stringWithFormat:@"Search type : %@", self.searchType == UrlSearchTypeBfs ? @"BFS": @"Speed search"];
 }
 
 - (void)showErrorAlert:(NSString * _Nonnull)alertMessage

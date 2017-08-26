@@ -22,12 +22,17 @@
 @property (nonatomic, strong) NSMutableSet<NSURL *> *urlsSet;
 @property (nonatomic, assign) NSUInteger currentUrlCount;
 @property (nonatomic, assign) NSUInteger currentProcessedCount;
+@property (nonatomic, assign) UrlSearchType searchType;
+
+// need for bfs
+@property (nonatomic, strong) NSMutableSet *currentLevelSet;
+@property (nonatomic, strong) NSMutableSet *nextLevelSet;
 
 @end
 
 @implementation UrlSearchTask
 
-- (instancetype _Nonnull)initWithStartUrl:(NSURL * _Nonnull)startUrl maxThreadsCount:(NSUInteger)threadsCount searchString:(NSString * _Nonnull)searchString maxUrlCount:(NSUInteger)urlCount
+- (instancetype _Nonnull)initWithStartUrl:(NSURL * _Nonnull)startUrl maxThreadsCount:(NSUInteger)threadsCount searchString:(NSString * _Nonnull)searchString maxUrlCount:(NSUInteger)urlCount searchType:(UrlSearchType)type
 {
     self = [super init];
     if (self)
@@ -44,8 +49,11 @@
          {
              self.runningOperationsTable = [NSHashTable weakObjectsHashTable];
              
+             self.currentLevelSet = [NSMutableSet new];
              self.urlsSet = [NSMutableSet new];
+             self.nextLevelSet = [NSMutableSet new];
              [self.urlsSet addObject:startUrl];
+             [self.currentLevelSet addObject:startUrl];
              self.currentUrlCount = 1;
              [self respondNewUrlsFound:[NSSet setWithObject:startUrl]];
              [self startOperationWithUrl:startUrl];
@@ -68,6 +76,21 @@
                                                   if (error)
                                                   {
                                                       [self respondUrlFault:parentUrl error:error];
+                                                      if (self.searchType == UrlSearchTypeBfs)
+                                                      {
+                                                          [self.currentLevelSet removeObject:parentUrl];
+                                                          
+                                                          if (!self.currentLevelSet.count)
+                                                          {
+                                                              [self.currentLevelSet unionSet:self.nextLevelSet];
+                                                              [self.nextLevelSet removeAllObjects];
+                                                              for (NSURL *theUrl in self.currentLevelSet)
+                                                              {
+                                                                  [self startOperationWithUrl:theUrl];
+                                                                  [self respondNewUrlsFound:[NSSet setWithObject:theUrl]];
+                                                              }
+                                                          }
+                                                      }
                                                   }
                                                   else
                                                   {
@@ -83,23 +106,84 @@
             withParentUrl:(NSURL *)theParentUrl
 {
     [self respondUrlFinishedProcessing:theParentUrl foundCount:searchCount];
-    if (self.currentUrlCount >= self.urlCount)
+    if (self.searchType == UrlSearchTypeBfs)
     {
-        return;
-    }
-    NSMutableSet *mutableSet = setOfUrls.mutableCopy;
-    [mutableSet minusSet:self.urlsSet];
-    if (mutableSet.count)
-    {
-        for (NSURL *theUrl in mutableSet)
+        [self.currentLevelSet removeObject:theParentUrl];
+        
+        if (!self.currentLevelSet.count)
         {
-            self.currentUrlCount++;
-            [self startOperationWithUrl:theUrl];
-            [self respondNewUrlsFound:[NSSet setWithObject:theUrl]];
-            [self.urlsSet addObject:theUrl];
+            [self.currentLevelSet unionSet:self.nextLevelSet];
+            [self.nextLevelSet removeAllObjects];
+            for (NSURL *theUrl in self.currentLevelSet)
+            {
+                [self startOperationWithUrl:theUrl];
+                [self respondNewUrlsFound:[NSSet setWithObject:theUrl]];
+            }
             if (self.currentUrlCount >= self.urlCount)
             {
-                break;
+                return;
+            }
+            NSMutableSet *mutableSet = setOfUrls.mutableCopy;
+            [mutableSet minusSet:self.urlsSet];
+            if (mutableSet.count)
+            {
+                for (NSURL *theUrl in mutableSet)
+                {
+                    self.currentUrlCount++;
+                    [self.currentLevelSet addObject:theUrl];
+                    [self startOperationWithUrl:theUrl];
+                    [self respondNewUrlsFound:[NSSet setWithObject:theUrl]];
+                    [self.urlsSet addObject:theUrl];
+                    if (self.currentUrlCount >= self.urlCount)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (self.currentUrlCount >= self.urlCount)
+            {
+                return;
+            }
+            NSMutableSet *mutableSet = setOfUrls.mutableCopy;
+            [mutableSet minusSet:self.urlsSet];
+            if (mutableSet.count)
+            {
+                for (NSURL *theUrl in mutableSet)
+                {
+                    self.currentUrlCount++;
+                    [self.nextLevelSet addObject:theUrl];
+                    [self.urlsSet addObject:theUrl];
+                    if (self.currentUrlCount >= self.urlCount)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        if (self.currentUrlCount >= self.urlCount)
+        {
+            return;
+        }
+        NSMutableSet *mutableSet = setOfUrls.mutableCopy;
+        [mutableSet minusSet:self.urlsSet];
+        if (mutableSet.count)
+        {
+            for (NSURL *theUrl in mutableSet)
+            {
+                self.currentUrlCount++;
+                [self startOperationWithUrl:theUrl];
+                [self respondNewUrlsFound:[NSSet setWithObject:theUrl]];
+                [self.urlsSet addObject:theUrl];
+                if (self.currentUrlCount >= self.urlCount)
+                {
+                    break;
+                }
             }
         }
     }
@@ -127,7 +211,6 @@
     {
         [operation cancel];
     }
-//    [self.operationQueue cancelAllOperations];
 }
 
 - (void)respondTaskFinished

@@ -11,6 +11,7 @@
 		CE0556B61F508ABA008C675F /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556B51F508ABA008C675F /* MainVC.m */; };
 		CE0556BC1F509D7D008C675F /* UIImage+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */; };
 		CE0556BF1F50C6D2008C675F /* UIView+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */; };
+		CE0556C51F50EED0008C675F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556C41F50EED0008C675F /* Reachability.m */; };
 		CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1053961F4F0DC5007000ED /* UrlSearchTask.m */; };
 		CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539C1F506B24007000ED /* AsynchronousOperation.m */; };
 		CE1053A01F506B90007000ED /* SearchTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539F1F506B90007000ED /* SearchTaskOperation.m */; };
@@ -30,6 +31,8 @@
 		CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BZExtensions.m"; sourceTree = "<group>"; };
 		CE0556BD1F50C6D2008C675F /* UIView+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BZExtensions.h"; sourceTree = "<group>"; };
 		CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BZExtensions.m"; sourceTree = "<group>"; };
+		CE0556C31F50EED0008C675F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CE0556C41F50EED0008C675F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CE1053951F4F0DC5007000ED /* UrlSearchTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlSearchTask.h; sourceTree = "<group>"; };
 		CE1053961F4F0DC5007000ED /* UrlSearchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlSearchTask.m; sourceTree = "<group>"; };
 		CE10539B1F506B24007000ED /* AsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousOperation.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				CE10539F1F506B90007000ED /* SearchTaskOperation.m */,
 				CE0556BD1F50C6D2008C675F /* UIView+BZExtensions.h */,
 				CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */,
+				CE0556C31F50EED0008C675F /* Reachability.h */,
+				CE0556C41F50EED0008C675F /* Reachability.m */,
 			);
 			path = DevelopexTestTask;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */,
 				CE0556BC1F509D7D008C675F /* UIImage+BZExtensions.m in Sources */,
 				CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */,
+				CE0556C51F50EED0008C675F /* Reachability.m in Sources */,
 				CE0556B61F508ABA008C675F /* MainVC.m in Sources */,
 				CEAF7F2F1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld in Sources */,
 				CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */,
