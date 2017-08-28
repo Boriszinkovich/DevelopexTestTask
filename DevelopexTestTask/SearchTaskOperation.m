@@ -16,6 +16,7 @@
 @property (atomic, weak) NSURLSessionTask *task;
 @property (nonatomic, copy) void (^dataTaskCompletionHandler)(NSSet<NSURL *> * _Nullable urlSet, NSUInteger searchCount, NSError * _Nullable error, NSURL * parentUrl);
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
+@property (atomic, assign) BOOL isPaused;
 
 @end
 
@@ -35,11 +36,25 @@
     return self;
 }
 
+- (void)dealloc
+{
+    while (dispatch_semaphore_signal(self.semaphore) != 0) {}
+}
+
 - (void)main
 {
+    if (self.isPaused)
+    {
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    }
     NSURLSession *session =  [NSURLSession sharedSession];
     session.configuration.timeoutIntervalForRequest = 15;
-    NSURLSessionTask *task = [session dataTaskWithRequest:self.request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionTask *task = [session dataTaskWithRequest:self.request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+    {
+        if (self.isPaused)
+        {
+            dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+        }
         if (error)
         {
             self.dataTaskCompletionHandler(nil, 0, error, self.request.URL);
@@ -97,19 +112,20 @@
         {
             [setOfURLs addObject:url];
         }
-        
     }
     return setOfURLs;
 }
 
-
 - (void)pause
 {
     [self.task suspend];
+    self.isPaused = YES;
 }
 
 - (void)resume
 {
+    self.isPaused = NO;
+    dispatch_semaphore_signal(self.semaphore);
     [self.task resume];
 }
 

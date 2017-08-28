@@ -12,6 +12,7 @@
 #import "UrlSearchTask.h"
 #import "UIView+BZExtensions.h"
 #import "Reachability.h"
+#import "UIColor+BZExtensions.h"
 
 typedef enum : NSInteger
 {
@@ -84,7 +85,6 @@ typedef enum : NSInteger
     [self createBarButtons];
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
-//    self.mainTableView.tableHeaderView = self.headerView;
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) ];
     self.urlCountTextField.delegate = self;
     self.urlCountTextField.keyboardType = UIKeyboardTypeNumberPad;
@@ -252,7 +252,7 @@ typedef enum : NSInteger
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
-    view.backgroundColor = [UIColor lightGrayColor];
+    view.backgroundColor = [UIColor getColorWithHexString:@"d3d3d3"];
     UIProgressView *progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, 120, 20)];
     self.progressView = progressView;
     [view addSubview:progressView];
@@ -315,6 +315,7 @@ typedef enum : NSInteger
 - (void)urlSearchTaskHasFinished:(UrlSearchTask * _Nonnull)searchTask
 {
     self.currentState = MainVCStateInitial;
+    [self.mainTableView reloadData];
     [self adjustBarToCurrentState];
 }
 
@@ -439,7 +440,7 @@ typedef enum : NSInteger
             break;
         case MainVCStatePaused:
         {
-            [self.navigationItem setRightBarButtonItems:@[self.playItem, self.stopItem]];
+            [self.navigationItem setRightBarButtonItems:@[self.stopItem, self.playItem]];
         }
             break;
     }

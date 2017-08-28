@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		927716DB6C6E15790421D460 /* libPods-DevelopexTestTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */; };
 		CE0556B61F508ABA008C675F /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556B51F508ABA008C675F /* MainVC.m */; };
-		CE0556BC1F509D7D008C675F /* UIImage+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */; };
-		CE0556BF1F50C6D2008C675F /* UIView+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */; };
-		CE0556C51F50EED0008C675F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0556C41F50EED0008C675F /* Reachability.m */; };
 		CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1053961F4F0DC5007000ED /* UrlSearchTask.m */; };
 		CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539C1F506B24007000ED /* AsynchronousOperation.m */; };
 		CE1053A01F506B90007000ED /* SearchTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE10539F1F506B90007000ED /* SearchTaskOperation.m */; };
+		CE8379BC1F5417D8003D80E5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8379B51F5417D8003D80E5 /* Reachability.m */; };
+		CE8379BD1F5417D8003D80E5 /* UIColor+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8379B71F5417D8003D80E5 /* UIColor+BZExtensions.m */; };
+		CE8379BE1F5417D8003D80E5 /* UIImage+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8379B91F5417D8003D80E5 /* UIImage+BZExtensions.m */; };
+		CE8379BF1F5417D8003D80E5 /* UIView+BZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8379BB1F5417D8003D80E5 /* UIView+BZExtensions.m */; };
 		CEAF7F231F4F0D48004E2B3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F221F4F0D48004E2B3C /* main.m */; };
 		CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F251F4F0D48004E2B3C /* AppDelegate.m */; };
 		CEAF7F2C1F4F0D48004E2B3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAF7F2A1F4F0D48004E2B3C /* Main.storyboard */; };
-		CEAF7F2F1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7F2D1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld */; };
 		CEAF7F311F4F0D48004E2B3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */; };
 		CEAF7F341F4F0D48004E2B3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAF7F321F4F0D48004E2B3C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -27,24 +27,25 @@
 		0CBE67BA3135312BD837E699 /* libPods-DevelopexTestTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DevelopexTestTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0556B41F508ABA008C675F /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
 		CE0556B51F508ABA008C675F /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
-		CE0556BA1F509D7D008C675F /* UIImage+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BZExtensions.h"; sourceTree = "<group>"; };
-		CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BZExtensions.m"; sourceTree = "<group>"; };
-		CE0556BD1F50C6D2008C675F /* UIView+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BZExtensions.h"; sourceTree = "<group>"; };
-		CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BZExtensions.m"; sourceTree = "<group>"; };
-		CE0556C31F50EED0008C675F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		CE0556C41F50EED0008C675F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CE1053951F4F0DC5007000ED /* UrlSearchTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlSearchTask.h; sourceTree = "<group>"; };
 		CE1053961F4F0DC5007000ED /* UrlSearchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlSearchTask.m; sourceTree = "<group>"; };
 		CE10539B1F506B24007000ED /* AsynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousOperation.h; sourceTree = "<group>"; };
 		CE10539C1F506B24007000ED /* AsynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousOperation.m; sourceTree = "<group>"; };
 		CE10539E1F506B90007000ED /* SearchTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTaskOperation.h; sourceTree = "<group>"; };
 		CE10539F1F506B90007000ED /* SearchTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTaskOperation.m; sourceTree = "<group>"; };
+		CE8379B41F5417D8003D80E5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CE8379B51F5417D8003D80E5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CE8379B61F5417D8003D80E5 /* UIColor+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BZExtensions.h"; sourceTree = "<group>"; };
+		CE8379B71F5417D8003D80E5 /* UIColor+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BZExtensions.m"; sourceTree = "<group>"; };
+		CE8379B81F5417D8003D80E5 /* UIImage+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BZExtensions.h"; sourceTree = "<group>"; };
+		CE8379B91F5417D8003D80E5 /* UIImage+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BZExtensions.m"; sourceTree = "<group>"; };
+		CE8379BA1F5417D8003D80E5 /* UIView+BZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BZExtensions.h"; sourceTree = "<group>"; };
+		CE8379BB1F5417D8003D80E5 /* UIView+BZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BZExtensions.m"; sourceTree = "<group>"; };
 		CEAF7F1E1F4F0D48004E2B3C /* DevelopexTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevelopexTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAF7F221F4F0D48004E2B3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEAF7F241F4F0D48004E2B3C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEAF7F251F4F0D48004E2B3C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CEAF7F2B1F4F0D48004E2B3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CEAF7F2E1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DevelopexTestTask.xcdatamodel; sourceTree = "<group>"; };
 		CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAF7F331F4F0D48004E2B3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAF7F351F4F0D48004E2B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +82,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE8379B31F5417D8003D80E5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE8379B41F5417D8003D80E5 /* Reachability.h */,
+				CE8379B51F5417D8003D80E5 /* Reachability.m */,
+				CE8379B61F5417D8003D80E5 /* UIColor+BZExtensions.h */,
+				CE8379B71F5417D8003D80E5 /* UIColor+BZExtensions.m */,
+				CE8379B81F5417D8003D80E5 /* UIImage+BZExtensions.h */,
+				CE8379B91F5417D8003D80E5 /* UIImage+BZExtensions.m */,
+				CE8379BA1F5417D8003D80E5 /* UIView+BZExtensions.h */,
+				CE8379BB1F5417D8003D80E5 /* UIView+BZExtensions.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		CEAF7F151F4F0D48004E2B3C = {
 			isa = PBXGroup;
 			children = (
@@ -108,22 +124,16 @@
 				CEAF7F301F4F0D48004E2B3C /* Assets.xcassets */,
 				CEAF7F321F4F0D48004E2B3C /* LaunchScreen.storyboard */,
 				CEAF7F351F4F0D48004E2B3C /* Info.plist */,
-				CEAF7F2D1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld */,
 				CEAF7F211F4F0D48004E2B3C /* Supporting Files */,
 				CE0556B41F508ABA008C675F /* MainVC.h */,
 				CE0556B51F508ABA008C675F /* MainVC.m */,
 				CE1053951F4F0DC5007000ED /* UrlSearchTask.h */,
 				CE1053961F4F0DC5007000ED /* UrlSearchTask.m */,
-				CE0556BA1F509D7D008C675F /* UIImage+BZExtensions.h */,
-				CE0556BB1F509D7D008C675F /* UIImage+BZExtensions.m */,
 				CE10539B1F506B24007000ED /* AsynchronousOperation.h */,
 				CE10539C1F506B24007000ED /* AsynchronousOperation.m */,
 				CE10539E1F506B90007000ED /* SearchTaskOperation.h */,
 				CE10539F1F506B90007000ED /* SearchTaskOperation.m */,
-				CE0556BD1F50C6D2008C675F /* UIView+BZExtensions.h */,
-				CE0556BE1F50C6D2008C675F /* UIView+BZExtensions.m */,
-				CE0556C31F50EED0008C675F /* Reachability.h */,
-				CE0556C41F50EED0008C675F /* Reachability.m */,
+				CE8379B31F5417D8003D80E5 /* Helpers */,
 			);
 			path = DevelopexTestTask;
 			sourceTree = "<group>";
@@ -262,15 +272,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0556BF1F50C6D2008C675F /* UIView+BZExtensions.m in Sources */,
 				CE1053971F4F0DC5007000ED /* UrlSearchTask.m in Sources */,
-				CE0556BC1F509D7D008C675F /* UIImage+BZExtensions.m in Sources */,
 				CE10539D1F506B24007000ED /* AsynchronousOperation.m in Sources */,
-				CE0556C51F50EED0008C675F /* Reachability.m in Sources */,
+				CE8379BC1F5417D8003D80E5 /* Reachability.m in Sources */,
+				CE8379BD1F5417D8003D80E5 /* UIColor+BZExtensions.m in Sources */,
 				CE0556B61F508ABA008C675F /* MainVC.m in Sources */,
-				CEAF7F2F1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld in Sources */,
 				CEAF7F261F4F0D48004E2B3C /* AppDelegate.m in Sources */,
+				CE8379BE1F5417D8003D80E5 /* UIImage+BZExtensions.m in Sources */,
 				CEAF7F231F4F0D48004E2B3C /* main.m in Sources */,
+				CE8379BF1F5417D8003D80E5 /* UIView+BZExtensions.m in Sources */,
 				CE1053A01F506B90007000ED /* SearchTaskOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,19 +449,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CEAF7F2D1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CEAF7F2E1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodel */,
-			);
-			currentVersion = CEAF7F2E1F4F0D48004E2B3C /* DevelopexTestTask.xcdatamodel */;
-			path = DevelopexTestTask.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CEAF7F161F4F0D48004E2B3C /* Project object */;
 }

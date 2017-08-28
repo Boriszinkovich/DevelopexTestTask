@@ -20,7 +20,8 @@
 @synthesize finished  = _finished;
 @synthesize executing = _executing;
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
     if (self) {
         _finished  = NO;
@@ -30,7 +31,8 @@
 }
 
 - (void)start {
-    if ([self isCancelled]) {
+    if ([self isCancelled])
+    {
         self.finished = YES;
         return;
     }
@@ -40,32 +42,40 @@
     [self main];
 }
 
-- (void)completeOperation {
+- (void)completeOperation
+{
     self.executing = NO;
     self.finished  = YES;
 }
 
 #pragma mark - NSOperation methods
 
-- (BOOL)isAsynchronous {
+- (BOOL)isAsynchronous
+{
     return YES;
 }
 
 - (BOOL)isExecuting {
-    @synchronized(self) {
+    @synchronized(self)
+    {
         return _executing;
     }
 }
 
-- (BOOL)isFinished {
-    @synchronized(self) {
+- (BOOL)isFinished
+{
+    @synchronized(self)
+    {
         return _finished;
     }
 }
 
-- (void)setExecuting:(BOOL)executing {
-    @synchronized(self) {
-        if (_executing != executing) {
+- (void)setExecuting:(BOOL)executing
+{
+    @synchronized(self)
+    {
+        if (_executing != executing)
+        {
             [self willChangeValueForKey:@"isExecuting"];
             _executing = executing;
             [self didChangeValueForKey:@"isExecuting"];
@@ -73,9 +83,12 @@
     }
 }
 
-- (void)setFinished:(BOOL)finished {
-    @synchronized(self) {
-        if (_finished != finished) {
+- (void)setFinished:(BOOL)finished
+{
+    @synchronized(self)
+    {
+        if (_finished != finished)
+        {
             [self willChangeValueForKey:@"isFinished"];
             _finished = finished;
             [self didChangeValueForKey:@"isFinished"];
