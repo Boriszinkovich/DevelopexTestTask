@@ -63,7 +63,6 @@
         else
         {
             NSString *result = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            NSLog(@"%@", result);
             NSSet *theUrls = [self methodFindUrls:result];
             NSUInteger searchCount = [self findSearchCount:self.searchString withOriginString:result];
             self.dataTaskCompletionHandler(theUrls, searchCount, error, self.request.URL);
@@ -106,7 +105,6 @@
     for (NSTextCheckingResult *match in arrayOfAllMatches)
     {
         NSString* substringForMatch = [text substringWithRange:match.range];
-        NSLog(@"Extracted URL: %@",substringForMatch);
         NSURL *url = [NSURL URLWithString:substringForMatch];
         if (url != nil)
         {

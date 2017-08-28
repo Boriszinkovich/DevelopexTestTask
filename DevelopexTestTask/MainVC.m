@@ -92,6 +92,10 @@ typedef enum : NSInteger
     [self.threadsView addGestureRecognizer:gesture];
     UITapGestureRecognizer *searchTypeGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSearchTypeViewWasTapped:)];
     [self.searchTypeView addGestureRecognizer:searchTypeGesture];
+    
+    self.startUrlTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.urlCountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
     self.threadsCount = 5;
     self.currentState = MainVCStateInitial;
@@ -128,19 +132,19 @@ typedef enum : NSInteger
 
 - (void)createBarButtons
 {
-    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [playButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
     [playButton setShowsTouchWhenHighlighted:YES];
-    playButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    playButton.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [playButton addTarget:self action:@selector(actionPlayButtonPressed:)
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *thePlayItem = [[UIBarButtonItem alloc] initWithCustomView:playButton];
     self.playItem = thePlayItem;
     
-    UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [stopButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     [stopButton setShowsTouchWhenHighlighted:YES];
-    stopButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    stopButton.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [stopButton addTarget:self action:@selector(actionStopButtonPressed:)
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *theStopItem = [[UIBarButtonItem alloc] initWithCustomView:stopButton];
@@ -149,7 +153,7 @@ typedef enum : NSInteger
     UIButton *pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [pauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     [pauseButton setShowsTouchWhenHighlighted:YES];
-    pauseButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    pauseButton.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [pauseButton addTarget:self action:@selector(actionPauseButtonPressed:)
           forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *pauseItem = [[UIBarButtonItem alloc] initWithCustomView:pauseButton];
@@ -297,9 +301,37 @@ typedef enum : NSInteger
         {
             return NO;
         }
-        if (newString.length > 5)
+        if (newString.length > 6)
         {
-            textField.text = [newString substringToIndex:5];
+            textField.text = [newString substringToIndex:6];
+        }
+        else
+        {
+            textField.text = newString;
+        }
+        return NO;
+    }
+    else if (textField == self.searchTextField)
+    {
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        double maxLength = 300;
+        if (newString.length > maxLength)
+        {
+            textField.text = [newString substringToIndex:maxLength];
+        }
+        else
+        {
+            textField.text = newString;
+        }
+        return NO;
+    }
+    else if (textField == self.startUrlTextField)
+    {
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        double maxLength = 300;
+        if (newString.length > maxLength)
+        {
+            textField.text = [newString substringToIndex:maxLength];
         }
         else
         {
@@ -448,12 +480,12 @@ typedef enum : NSInteger
 
 - (void)adjustThreadsLabel
 {
-    self.threadsLabel.text = [NSString stringWithFormat:@"Threads count:%zd", self.threadsCount];
+    self.threadsLabel.text = [NSString stringWithFormat:@"Threads count: %zd ▾", self.threadsCount];
 }
 
 - (void)adjustSearchTypeLabel
 {
-    self.searchTypeLabel.text = [NSString stringWithFormat:@"Search type : %@", self.searchType == UrlSearchTypeBfs ? @"BFS": @"Speed search"];
+    self.searchTypeLabel.text = [NSString stringWithFormat:@"Search type : %@ ▾", self.searchType == UrlSearchTypeBfs ? @"BFS": @"Speed search"];
 }
 
 - (void)showErrorAlert:(NSString * _Nonnull)alertMessage
